@@ -39,11 +39,12 @@ angular.module('SpletniObrazec').directive('monthname', function() {
 		scope: {
 			month: '@'
 		},
-		template: '<p>Ime meseca: {{ GetMonthName() }}</p>',
+		template: '<p>Ime meseca: <label>{{ GetMonthName() }}</label></p>',
 		controller: function($scope) {
-			$scope.monthNames = ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"];
+			$scope.monthNames = ["Januar", "Februar", "Marec", "April", "Maj", "Junij","Julij", "Avgust", "September", "Oktober", "November", "December"];
 			$scope.GetMonthName = function() {
-				return ($scope.month >= 1 && $scope.month <= 12) ? $scope.monthNames[$scope.month - 1] : 'N/A';
+				if ($scope.month === undefined || $scope.month.trim().length === 0) return "";
+				return ($scope.month >= 1 && $scope.month <= 12) ? $scope.monthNames[$scope.month - 1] : 'Nepravilen vnos. Vpišete lahko le številko med 1 in 12.';
 			}
 		}
 	}
